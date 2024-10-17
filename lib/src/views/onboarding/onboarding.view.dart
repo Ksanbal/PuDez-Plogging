@@ -15,7 +15,7 @@ class OnboardingView extends GetView<OnboardingController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 34),
+        padding: const EdgeInsets.only(bottom: 16),
         child: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: controller.pageController,
