@@ -13,6 +13,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   get: ^4.6.6
+  flutter_svg: ^2.0.10+1
+  gap: ^3.0.1
+  smooth_page_indicator: ^1.2.0+3
 
 dev_dependencies:
   flutter_test:
@@ -28,4 +31,25 @@ flutter:
         - asset: assets/fonts/PretendardVariable.ttf
     - family: NotoSans
       fonts:
-        - asset: assets/fonts/NotoSansKR-VariableFont_wght.ttf
+        - asset: assets/fonts/NotoSansKR/NotoSansKR-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/NotoSansKR/NotoSansKR-Light.ttf
+          weight: 300
+        - asset: assets/fonts/NotoSansKR/NotoSansKR-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/NotoSansKR/NotoSansKR-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSansKR/NotoSansKR-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/NotoSansKR/NotoSansKR-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/NotoSansKR/NotoSansKR-Black.ttf
+          weight: 900
+
+  assets:
+    - assets/images/onboarding/onboarding_1/
+    - assets/images/onboarding/onboarding_2/
+
+    - assets/images/character/character_0/
+    - assets/images/character/character_1/
+    - assets/images/character/character_2/

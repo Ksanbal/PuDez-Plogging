@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialRoute: '/',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         fontFamily: FontFamily.pretendard,
       ),
       getPages: [
@@ -49,3 +50,10 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+/// Global variables
+
+/// 선택한 캐릭터
+///
+/// 0: 초록, 1: 회색, 2: 빨강, 3: 랜덤
+int character = 3;
