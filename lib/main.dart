@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:pudez_plogging/src/common/font.family.dart';
 import 'package:pudez_plogging/src/controllers/home/home.controller.dart';
 import 'package:pudez_plogging/src/controllers/onboarding/onboarding.controller.dart';
-import 'package:pudez_plogging/src/controllers/splash/splash.controller.dart';
 import 'package:pudez_plogging/src/views/home/home.view.dart';
 import 'package:pudez_plogging/src/views/onboarding/onboarding.view.dart';
-import 'package:pudez_plogging/src/views/splash/splash.view.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
+
+  Future.delayed(const Duration(seconds: 2)).then((value) {
+    FlutterNativeSplash.remove();
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -19,20 +24,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/onboarding',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         fontFamily: FontFamily.pretendard,
         primaryColor: Colors.white,
       ),
       getPages: [
-        GetPage(
-          name: '/',
-          page: () => const SplashView(),
-          binding: BindingsBuilder(() {
-            Get.put(SplashController());
-          }),
-        ),
         GetPage(
           name: '/onboarding',
           page: () => const OnboardingView(),
