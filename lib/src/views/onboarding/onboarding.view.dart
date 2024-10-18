@@ -55,6 +55,7 @@ class OnboardingView extends GetView<OnboardingController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Gap(10),
                 const Text(
                   "안녕하세요!",
                   style: TextStyle(
@@ -75,10 +76,15 @@ class OnboardingView extends GetView<OnboardingController> {
                   ),
                 ),
                 const Gap(24),
-                Image.asset(ImageFamily.onboarding_1),
+                Flexible(
+                  child: Image.asset(
+                    ImageFamily.onboarding_1,
+                  ),
+                ),
                 const Gap(24),
                 // PageView Navigator
                 pageIndicator(),
+                const Gap(10),
               ],
             ),
           ),
@@ -104,6 +110,7 @@ class OnboardingView extends GetView<OnboardingController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Gap(10),
                 const Text(
                   "참여방법",
                   style: TextStyle(
@@ -124,10 +131,11 @@ class OnboardingView extends GetView<OnboardingController> {
                   ),
                 ),
                 const Gap(24),
-                Image.asset(ImageFamily.onboarding_2),
+                Flexible(child: Image.asset(ImageFamily.onboarding_2)),
                 const Gap(24),
                 // PageView Navigator
                 pageIndicator(),
+                const Gap(10),
               ],
             ),
           ),
@@ -166,6 +174,7 @@ class OnboardingView extends GetView<OnboardingController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Gap(10),
                 const Text(
                   "캐릭터 선택",
                   style: TextStyle(
@@ -186,71 +195,74 @@ class OnboardingView extends GetView<OnboardingController> {
                   ),
                 ),
                 const Gap(24),
-                AspectRatio(
-                  aspectRatio: 1 / 1,
-                  child: GridView.builder(
-                    itemCount: 4,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                    itemBuilder: (context, index) {
-                      return Obx(() {
-                        final isSelected = controller.selectedCharacter.value == index;
+                Flexible(
+                  child: AspectRatio(
+                    aspectRatio: 1 / 1,
+                    child: GridView.builder(
+                      itemCount: 4,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                      ),
+                      itemBuilder: (context, index) {
+                        return Obx(() {
+                          final isSelected = controller.selectedCharacter.value == index;
 
-                        return InkWell(
-                          onTap: () => controller.onPressedCharacter(index),
-                          borderRadius: BorderRadius.circular(16),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: isSelected
-                                  ? const Color(0xff00CD80).withOpacity(0.1)
-                                  : Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              border: isSelected
-                                  ? Border.all(
-                                      color: const Color(0xff00CD80),
-                                      width: 2,
-                                    )
-                                  : Border.all(
-                                      color: const Color(0xffE9EBEE),
-                                      width: 1,
-                                    ),
-                            ),
-                            child: Center(
-                              child: index < 3
-                                  ? Image.asset(
-                                      ImageFamily.characterList[index],
-                                    )
-                                  : Container(
-                                      width: 100,
-                                      height: 100,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Color(0xff303538),
+                          return InkWell(
+                            onTap: () => controller.onPressedCharacter(index),
+                            borderRadius: BorderRadius.circular(16),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: isSelected
+                                    ? const Color(0xff00CD80).withOpacity(0.1)
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(16),
+                                border: isSelected
+                                    ? Border.all(
+                                        color: const Color(0xff00CD80),
+                                        width: 2,
+                                      )
+                                    : Border.all(
+                                        color: const Color(0xffE9EBEE),
+                                        width: 1,
                                       ),
-                                      child: const Center(
-                                        child: Text(
-                                          "랜덤",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.white,
+                              ),
+                              child: Center(
+                                child: index < 3
+                                    ? Image.asset(
+                                        ImageFamily.characterList[index],
+                                      )
+                                    : Container(
+                                        width: 100,
+                                        height: 100,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Color(0xff303538),
+                                        ),
+                                        child: const Center(
+                                          child: Text(
+                                            "랜덤",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
+                              ),
                             ),
-                          ),
-                        );
-                      });
-                    },
+                          );
+                        });
+                      },
+                    ),
                   ),
                 ),
                 const Gap(24),
                 // PageView Navigator
                 pageIndicator(),
+                const Gap(10),
               ],
             ),
           ),
