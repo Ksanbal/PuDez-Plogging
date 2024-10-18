@@ -17,7 +17,6 @@ class OnboardingView extends GetView<OnboardingController> {
       body: Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: PageView(
-          physics: const NeverScrollableScrollPhysics(),
           controller: controller.pageController,
           children: [
             // 안녕하세요!
