@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:pudez_plogging/src/common/font.family.dart';
 import 'package:pudez_plogging/src/controllers/home/home.controller.dart';
@@ -10,8 +9,6 @@ import 'package:pudez_plogging/src/views/onboarding/onboarding.view.dart';
 import 'package:pudez_plogging/src/views/splash.view.dart';
 
 void main() {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
@@ -60,4 +57,4 @@ class MyApp extends StatelessWidget {
 /// 선택한 캐릭터
 ///
 /// 0: 초록, 1: 회색, 2: 빨강, 3: 랜덤
-int character = 3;
+int? character;

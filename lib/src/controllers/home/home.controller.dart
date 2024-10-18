@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pudez_plogging/main.dart';
 import 'package:pudez_plogging/src/views/home/complete.bottomsheet.dart';
 import 'package:pudez_plogging/src/views/home/info.dialog.dart';
 import 'package:pudez_plogging/src/views/home/qr.dialog.dart';
@@ -8,6 +9,8 @@ class HomeController extends GetxController {
   @override
   onReady() {
     super.onReady();
+
+    if (character == null) Get.offNamed('/');
 
     Future.delayed(const Duration(seconds: 1), onPressedMission);
 

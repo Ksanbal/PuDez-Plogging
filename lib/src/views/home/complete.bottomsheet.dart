@@ -84,7 +84,10 @@ class CompleteBottomSheet extends StatelessWidget {
             top: 16,
             right: 16,
             child: IconButton(
-              onPressed: Get.back,
+              onPressed: () {
+                Get.back();
+                Get.offNamed('/');
+              },
               icon: Image.asset(
                 IconImageFamily.closed,
                 height: 24,
