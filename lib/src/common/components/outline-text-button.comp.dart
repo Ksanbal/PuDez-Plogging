@@ -21,7 +21,7 @@ class OutlineTextButtonComp extends StatelessWidget {
         backgroundColor: backgroundColor ?? Colors.white,
         minimumSize: const Size(double.infinity, 0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(16),
           side: const BorderSide(
             color: Color(0xffDDDDDD),
             width: 1,

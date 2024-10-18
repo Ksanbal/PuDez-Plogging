@@ -17,6 +17,7 @@ dependencies:
   gap: ^3.0.1
   smooth_page_indicator: ^1.2.0+3
   flutter_native_splash: ^2.4.1
+  mobile_scanner: ^6.0.1
 
 dev_dependencies:
   flutter_test:
@@ -29,7 +30,10 @@ flutter:
   fonts:
     - family: Pretendard
       fonts:
-        - asset: assets/fonts/PretendardVariable.ttf
+        - asset: assets/fonts/Pretendard/Pretendard-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Pretendard/Pretendard-Bold.ttf
+          weight: 700
     - family: NotoSans
       fonts:
         - asset: assets/fonts/NotoSansKR/NotoSansKR-Thin.ttf
@@ -48,9 +52,24 @@ flutter:
           weight: 900
 
   assets:
+    # Images
     - assets/images/onboarding/onboarding_1/
     - assets/images/onboarding/onboarding_2/
 
     - assets/images/character/character_0/
     - assets/images/character/character_1/
     - assets/images/character/character_2/
+
+    - assets/images/confetti/
+
+    - assets/images/splash.png
+
+    # Icons
+    - assets/icons/arrow-right-small-mono.png
+    - assets/icons/bags.png
+    - assets/icons/crown.png
+    - assets/icons/exclamation-circle-mono.png
+    - assets/icons/posititon.png
+    - assets/icons/tongs.png
+    - assets/icons/trash.png
+    - assets/icons/closed.png

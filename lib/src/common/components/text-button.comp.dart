@@ -6,11 +6,13 @@ class TextButtonComp extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.text,
+    this.child,
     this.backgroundColor,
   });
 
   final Function()? onPressed;
   final String text;
+  final Widget? child;
   final Color? backgroundColor;
 
   @override
@@ -18,20 +20,26 @@ class TextButtonComp extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 15),
+        padding: const EdgeInsets.symmetric(
+          vertical: 15,
+          horizontal: 20,
+        ),
         backgroundColor: backgroundColor ?? ColorFamily.primary,
         minimumSize: const Size(double.infinity, 0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(16),
         ),
       ),
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontSize: 17,
-          fontWeight: FontWeight.w700,
-          color: Colors.white,
-        ),
+      child: Center(
+        child: child ??
+            Text(
+              text,
+              style: const TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
       ),
     );
   }
