@@ -19,7 +19,7 @@ class HomeController extends GetxController {
 
     _initLocation();
 
-    // Future.delayed(const Duration(seconds: 1), onPressedMission);
+    Future.delayed(const Duration(seconds: 1), onPressedMission);
 
     ever(progress, (value) {
       Future.delayed(

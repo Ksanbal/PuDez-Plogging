@@ -5,11 +5,6 @@ import 'package:get/get.dart';
 import 'package:pudez_plogging/main.dart';
 
 class OnboardingController extends GetxController {
-  @override
-  void onReady() async {
-    super.onReady();
-  }
-
   PageController pageController = PageController();
 
   RxInt page = 0.obs;
