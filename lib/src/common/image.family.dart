@@ -12,6 +12,15 @@ class ImageFamily {
     character_2,
   ];
 
+  static const locationCharacter0 = 'assets/images/character/location/character_0.png';
+  static const locationCharacter1 = 'assets/images/character/location/character_1.png';
+  static const locationCharacter2 = 'assets/images/character/location/character_2.png';
+  static const locatioinCharacterList = [
+    locationCharacter0,
+    locationCharacter1,
+    locationCharacter2,
+  ];
+
   static const confetti = 'assets/images/confetti/confetti.png';
 
   static const splash = 'assets/images/splash.png';

@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pudez_plogging/src/common/components/text-button.comp.dart';
 import 'package:pudez_plogging/src/common/icon-image.family.dart';
 import 'package:pudez_plogging/src/controllers/home/home.controller.dart';
@@ -17,9 +20,7 @@ class HomeView extends GetView<HomeController> {
             child: Stack(
               children: [
                 // 지도
-                Container(
-                  color: Colors.blue,
-                ),
+                googleMap(controller.mapController),
                 // 상태
                 Padding(
                   padding: const EdgeInsets.fromLTRB(19, 28, 19, 0),
@@ -47,7 +48,7 @@ class HomeView extends GetView<HomeController> {
                   bottom: 12,
                   right: 16,
                   child: InkWell(
-                    onTap: controller.onPressedMyLocation,
+                    onTap: controller.moveCameraToCurrentPosition,
                     child: Container(
                       width: 43,
                       height: 43,
@@ -272,6 +273,26 @@ class HomeView extends GetView<HomeController> {
             ],
           ),
         ],
+      );
+    });
+  }
+
+  Widget googleMap(Completer<GoogleMapController> mapController) {
+    return Obx(() {
+      return GoogleMap(
+        mapType: MapType.normal,
+        initialCameraPosition: const CameraPosition(
+          target: LatLng(
+            37.55646349865586,
+            126.9288384597041,
+          ),
+          zoom: 18,
+        ),
+        onMapCreated: (GoogleMapController controller) {
+          mapController.complete(controller);
+        },
+        zoomControlsEnabled: false,
+        markers: controller.markers,
       );
     });
   }
