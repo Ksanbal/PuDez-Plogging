@@ -69,6 +69,7 @@ class HomeController extends GetxController {
     Get.bottomSheet(
       const CompleteBottomSheet(),
       isScrollControlled: true,
+      isDismissible: false,
     );
   }
 }

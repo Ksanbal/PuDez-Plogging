@@ -56,10 +56,10 @@ class CompleteBottomSheet extends StatelessWidget {
                 ),
                 const Gap(8),
                 // 완료 이미지
-                const Flexible(
+                Flexible(
                   child: AspectRatio(
                     aspectRatio: 1 / 1,
-                    child: Placeholder(),
+                    child: Image.asset(ImageFamily.ending),
                   ),
                 ),
                 const Gap(24),

@@ -15,4 +15,6 @@ class ImageFamily {
   static const confetti = 'assets/images/confetti/confetti.png';
 
   static const splash = 'assets/images/splash.png';
+
+  static const ending = 'assets/images/ending/ending.png';
 }

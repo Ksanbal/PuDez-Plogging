@@ -48,6 +48,8 @@ flutter:
     - assets/images/character/character_1/
     - assets/images/character/character_2/
 
+    - assets/images/ending/
+
     - assets/images/confetti/
 
     - assets/images/splash.png
