@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pudez_plogging/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingController extends GetxController {
   PageController pageController = PageController();
@@ -31,7 +32,7 @@ class OnboardingController extends GetxController {
   }
 
   /// 캐릭터 선택 후 다음 페이지로 이동
-  onPressedStart() {
+  onPressedStart() async {
     if (selectedCharacter.value == 3) {
       // 랜덤 선택 시
       character = Random().nextInt(3);
@@ -40,11 +41,27 @@ class OnboardingController extends GetxController {
       character = selectedCharacter.value;
     }
 
+    // 선택한 캐릭터 저장
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('selectedCharacter', character!);
+
     Get.offNamed('/home');
   }
 
   /// 캐릭터 선택시
   onPressedCharacter(int index) {
     selectedCharacter(index);
+  }
+
+  @override
+  Future<void> onReady() async {
+    super.onReady();
+
+    final prefs = await SharedPreferences.getInstance();
+    final data = prefs.getInt('selectedCharacter');
+    if (data != null) {
+      character = data;
+      Get.offNamed('/home');
+    }
   }
 }
