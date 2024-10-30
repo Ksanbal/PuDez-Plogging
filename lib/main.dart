@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pudez_plogging/firebase_options.dart';
 import 'package:pudez_plogging/src/common/font.family.dart';
 import 'package:pudez_plogging/src/controllers/home/home.controller.dart';
 import 'package:pudez_plogging/src/controllers/onboarding/onboarding.controller.dart';
@@ -8,7 +10,12 @@ import 'package:pudez_plogging/src/views/home/home.view.dart';
 import 'package:pudez_plogging/src/views/onboarding/onboarding.view.dart';
 import 'package:pudez_plogging/src/views/splash.view.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
