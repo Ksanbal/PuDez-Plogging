@@ -65,6 +65,7 @@ class HomeController extends GetxController {
     if (progress.value == 0) {
       final value = await Get.bottomSheet(
         const CodeBottomsheet(),
+        isScrollControlled: true,
       );
 
       if (value != null) {
