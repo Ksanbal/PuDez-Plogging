@@ -171,8 +171,7 @@ class HomeController extends GetxController {
     moveCameraToCurrentPosition();
     Geolocator.getPositionStream().listen((Position position) {
       _currentPosition.value = position;
-
-      moveCameraToCurrentPosition();
+      _updateMarkers();
     });
   }
 

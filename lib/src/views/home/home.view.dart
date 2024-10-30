@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -293,6 +292,7 @@ class HomeView extends GetView<HomeController> {
         },
         zoomControlsEnabled: false,
         markers: controller.markers,
+        webGestureHandling: WebGestureHandling.greedy,
       );
     });
   }
