@@ -54,7 +54,6 @@ class _CodeBottomsheetState extends State<CodeBottomsheet> {
                   controller: _controller,
                   onChanged: (value) => setState(() {}),
                   textAlign: TextAlign.center,
-                  autofocus: true,
                   style: const TextStyle(
                     fontSize: 26,
                     color: Color(0xff303538),
