@@ -21,9 +21,23 @@ class HomeView extends GetView<HomeController> {
                 // 지도
                 googleMap(controller.mapController),
                 // 상태
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(19, 28, 19, 0),
-                  child: progressBar(),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(19, 28, 19, 11),
+                  color: Colors.white,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      progressBar(),
+                      const Gap(8),
+                      const Text(
+                        "17:00까지 부스로 도착해주세요!",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xffEC6863),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 // 하단 음영
                 Align(
@@ -93,11 +107,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                         Obx(() {
                           return Text(
-                            controller.progress.value == 0
-                                ? "미션1 | 집게 찾기 - 위치"
-                                : controller.progress.value == 1
-                                    ? "미션2 | 봉투 찾기 - 위치"
-                                    : "미션3 | 쓰레기 줍기",
+                            controller.progress.value == 0 ? "미션1 | 집게 찾기 - 위치" : "미션2 | 쓰레기 줍기",
                             style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w700,
@@ -117,10 +127,12 @@ class HomeView extends GetView<HomeController> {
                 // QR 인증 버튼
                 Flexible(
                   flex: 1,
-                  child: TextButtonComp(
-                    onPressed: controller.onPressedQr,
-                    text: "QR 인증",
-                  ),
+                  child: Obx(() {
+                    return TextButtonComp(
+                      onPressed: controller.onPressedQr,
+                      text: controller.progress.value == 0 ? "인증하기" : "QR 인증",
+                    );
+                  }),
                 ),
               ],
             ),
@@ -141,13 +153,13 @@ class HomeView extends GetView<HomeController> {
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
                 color: const Color(0xffE9EBEE),
-                width: 1,
+                width: 2,
               ),
             ),
             child: LinearProgressIndicator(
-              value: (controller.progress.value + 1) / 4,
-              minHeight: 20,
-              backgroundColor: const Color(0xffC5C8CE),
+              value: (controller.progress.value + 1) / 3,
+              minHeight: 18,
+              backgroundColor: const Color(0xffE9EBEE),
               color: const Color(0xff00CD80),
               borderRadius: BorderRadius.circular(10),
             ),
@@ -158,8 +170,8 @@ class HomeView extends GetView<HomeController> {
               // 집게 icon
               controller.progress.value == 0
                   ? Container(
-                      width: 30,
-                      height: 30,
+                      width: 20,
+                      height: 20,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
@@ -167,20 +179,14 @@ class HomeView extends GetView<HomeController> {
                           width: 2,
                         ),
                         color: const Color(0xff00CD80),
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          IconImageFamily.tongs,
-                          height: 24,
-                        ),
                       ),
                     )
                   : const Gap(0),
               // 봉투 icon
               controller.progress.value == 1
                   ? Container(
-                      width: 30,
-                      height: 30,
+                      width: 20,
+                      height: 20,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
@@ -188,59 +194,19 @@ class HomeView extends GetView<HomeController> {
                           width: 2,
                         ),
                         color: const Color(0xff00CD80),
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          IconImageFamily.bags,
-                          height: 24,
-                        ),
                       ),
                     )
                   : controller.progress.value < 2
                       ? Container(
-                          width: 19,
-                          height: 19,
+                          width: 20,
+                          height: 20,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: const Color(0xffE9EBEE),
-                              width: 1,
+                              color: Colors.white,
+                              width: 2,
                             ),
-                            color: const Color(0xffD9D9D9),
-                          ),
-                        )
-                      : const Gap(0),
-              // 쓰레기 icon
-              controller.progress.value == 2
-                  ? Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 2,
-                        ),
-                        color: const Color(0xff00CD80),
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          IconImageFamily.trash,
-                          height: 24,
-                        ),
-                      ),
-                    )
-                  : controller.progress.value < 3
-                      ? Container(
-                          width: 19,
-                          height: 19,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: const Color(0xffE9EBEE),
-                              width: 1,
-                            ),
-                            color: const Color(0xffD9D9D9),
+                            color: const Color(0xffE9EBEE),
                           ),
                         )
                       : const Gap(0),
@@ -258,7 +224,7 @@ class HomeView extends GetView<HomeController> {
                     color: Colors.white,
                     width: 2,
                   ),
-                  color: controller.progress.value == 3
+                  color: controller.progress.value == 2
                       ? const Color(0xff00CD80)
                       : const Color(0xffD9D9D9),
                 ),

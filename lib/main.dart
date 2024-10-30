@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -65,3 +66,5 @@ class MyApp extends StatelessWidget {
 ///
 /// 0: 초록, 1: 회색, 2: 빨강, 3: 랜덤
 int? character;
+
+final db = FirebaseFirestore.instance;

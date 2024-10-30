@@ -12,14 +12,12 @@ class InfoDialog extends StatelessWidget {
   final int progress;
 
   static List<String> titles = [
-    "집게 위치",
-    "봉투 위치",
+    "<집게&봉투> 위치",
     "쓰레기 줍기",
   ];
   static List<String> descriptions = [
     "해당 위치까지 가면 획득할 수 있어요!",
-    "해당 위치까지 가면 획득할 수 있어요!",
-    "봉투를 다 채웠다면,\n부스로 와서 봉투를 비워주세요.",
+    "봉투를 다 채웠다면,\n가까운 부스(A 또는 B)로 와주세요!",
   ];
 
   @override
@@ -53,12 +51,83 @@ class InfoDialog extends StatelessWidget {
               ),
             ),
             const Gap(8),
-            const Flexible(
-              child: AspectRatio(
-                aspectRatio: 1 / 1,
-                child: Placeholder(),
+            if (progress == 0)
+              Flexible(
+                child: AspectRatio(
+                  aspectRatio: 1 / 1,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: const Placeholder(),
+                  ),
+                ),
               ),
-            ),
+            if (progress == 1) ...[
+              Flexible(
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: const Placeholder(),
+                    ),
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      child: Container(
+                        height: 44,
+                        width: 44,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: const Color(0xff303538),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "A",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Gap(8),
+              Flexible(
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: const Placeholder(),
+                    ),
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      child: Container(
+                        height: 44,
+                        width: 44,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: const Color(0xff303538),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "B",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
             const Gap(24),
             TextButtonComp(
               onPressed: Get.back,
