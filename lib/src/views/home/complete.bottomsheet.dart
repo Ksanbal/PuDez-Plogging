@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pudez_plogging/src/common/components/outline-text-button.comp.dart';
 import 'package:pudez_plogging/src/common/components/text-button.comp.dart';
-import 'package:pudez_plogging/src/common/icon-image.family.dart';
 import 'package:pudez_plogging/src/common/image.family.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -113,20 +112,20 @@ class CompleteBottomSheet extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            top: 16,
-            right: 16,
-            child: IconButton(
-              onPressed: () {
-                Get.back();
-                Get.offNamed('/');
-              },
-              icon: Image.asset(
-                IconImageFamily.closed,
-                height: 24,
-              ),
-            ),
-          ),
+          // Positioned(
+          //   top: 16,
+          //   right: 16,
+          //   child: IconButton(
+          //     onPressed: () {
+          //       Get.back();
+          //       Get.offNamed('/');
+          //     },
+          //     icon: Image.asset(
+          //       IconImageFamily.closed,
+          //       height: 24,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
