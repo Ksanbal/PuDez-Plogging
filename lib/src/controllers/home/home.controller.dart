@@ -200,34 +200,38 @@ class HomeController extends GetxController {
 
   /// 위치 기능 설정
   _initLocation() async {
-    LocationPermission permission = await Geolocator.checkPermission();
+    try {
+      LocationPermission permission = await Geolocator.checkPermission();
 
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+      permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
-        // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
-        return Future.error('Location permissions are denied');
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          // Permissions are denied, next time you could try
+          // requesting permissions again (this is also where
+          // Android's shouldShowRequestPermissionRationale
+          // returned true. According to Android guidelines
+          // your App should show an explanatory UI now.
+          return Future.error('Location permissions are denied');
+        }
       }
-    }
 
-    if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
-      return Future.error(
-        'Location permissions are permanently denied, we cannot request permissions.',
-      );
-    }
+      if (permission == LocationPermission.deniedForever) {
+        // Permissions are denied forever, handle appropriately.
+        return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.',
+        );
+      }
 
-    _currentPosition.value = await Geolocator.getCurrentPosition();
-    moveCameraToCurrentPosition();
-    Geolocator.getPositionStream().listen((Position position) {
-      _currentPosition.value = position;
-      _updateMarkers();
-    });
+      _currentPosition.value = await Geolocator.getCurrentPosition();
+      moveCameraToCurrentPosition();
+      Geolocator.getPositionStream().listen((Position position) {
+        _currentPosition.value = position;
+        _updateMarkers();
+      });
+    } catch (error) {
+      log('Error: $error');
+    }
   }
 
   final Completer<GoogleMapController> mapController = Completer<GoogleMapController>();
@@ -251,19 +255,23 @@ class HomeController extends GetxController {
   /// 현재 사용가능한 집게 & 봉투 목록 listener
   final List<QueryDocumentSnapshot<Object?>> _items = [];
   _startListener() {
-    if (progress.value == 0) {
-      Stream<QuerySnapshot> itemsStream = db.collection('items').snapshots();
-      itemsStream.listen((QuerySnapshot snapshot) {
-        _items.clear();
-        _items.addAll(snapshot.docs);
+    try {
+      if (progress.value == 0) {
+        Stream<QuerySnapshot> itemsStream = db.collection('items').snapshots();
+        itemsStream.listen((QuerySnapshot snapshot) {
+          _items.clear();
+          _items.addAll(snapshot.docs);
 
-        // 마커로 추가
-        if (progress.value == 0) {
-          _updateMarkers();
-        }
-      }, onError: (error) {
-        log('Error: $error');
-      });
+          // 마커로 추가
+          if (progress.value == 0) {
+            _updateMarkers();
+          }
+        }, onError: (error) {
+          log('Error: $error');
+        });
+      }
+    } catch (error) {
+      log('Error: $error');
     }
   }
 }
