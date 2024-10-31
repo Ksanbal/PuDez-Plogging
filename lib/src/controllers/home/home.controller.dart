@@ -211,15 +211,17 @@ class HomeController extends GetxController {
           // Android's shouldShowRequestPermissionRationale
           // returned true. According to Android guidelines
           // your App should show an explanatory UI now.
-          return Future.error('Location permissions are denied');
+          // return Future.error('Location permissions are denied');
+          return print('Location permissions are denied');
         }
       }
 
       if (permission == LocationPermission.deniedForever) {
         // Permissions are denied forever, handle appropriately.
-        return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.',
-        );
+        // return Future.error(
+        //   'Location permissions are permanently denied, we cannot request permissions.',
+        // );
+        return print('Location permissions are permanently denied, we cannot request permissions.');
       }
 
       _currentPosition.value = await Geolocator.getCurrentPosition();
