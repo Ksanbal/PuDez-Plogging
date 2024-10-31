@@ -63,6 +63,10 @@ flutter:
 
     - assets/images/splash.png
 
+    - assets/images/item.jpg
+    - assets/images/spot0.jpg
+    - assets/images/spot1.jpg
+
     # Icons
     - assets/icons/arrow-right-small-mono.png
     - assets/icons/bags.png

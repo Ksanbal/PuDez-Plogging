@@ -26,4 +26,8 @@ class ImageFamily {
   static const splash = 'assets/images/splash.png';
 
   static const ending = 'assets/images/ending/ending.png';
+
+  static const item = 'assets/images/item.jpg';
+  static const spot0 = 'assets/images/spot0.jpg';
+  static const spot1 = 'assets/images/spot1.jpg';
 }

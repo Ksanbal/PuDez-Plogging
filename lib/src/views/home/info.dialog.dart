@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pudez_plogging/src/common/components/text-button.comp.dart';
+import 'package:pudez_plogging/src/common/image.family.dart';
 
 class InfoDialog extends StatelessWidget {
   const InfoDialog({
@@ -57,7 +58,9 @@ class InfoDialog extends StatelessWidget {
                   aspectRatio: 1 / 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: const Placeholder(),
+                    child: Image.asset(
+                      ImageFamily.item,
+                    ),
                   ),
                 ),
               ),
@@ -67,7 +70,9 @@ class InfoDialog extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: const Placeholder(),
+                      child: Image.asset(
+                        ImageFamily.spot0,
+                      ),
                     ),
                     Positioned(
                       top: 0,
@@ -100,7 +105,9 @@ class InfoDialog extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: const Placeholder(),
+                      child: Image.asset(
+                        ImageFamily.spot1,
+                      ),
                     ),
                     Positioned(
                       top: 0,
