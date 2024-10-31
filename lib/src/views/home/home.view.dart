@@ -247,10 +247,7 @@ class HomeView extends GetView<HomeController> {
       return GoogleMap(
         mapType: MapType.normal,
         initialCameraPosition: const CameraPosition(
-          target: LatLng(
-            37.55646349865586,
-            126.9288384597041,
-          ),
+          target: LatLng(37.559513, 126.924781),
           zoom: 18,
         ),
         onMapCreated: (GoogleMapController controller) {

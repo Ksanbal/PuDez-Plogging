@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -22,7 +24,8 @@ class HomeController extends GetxController {
 
     if (character == null) Get.offNamed('/');
 
-    _initLocation();
+    await _initLocation();
+    await _startListener();
 
     if (progress.value < 2) {
       Future.delayed(const Duration(seconds: 1), onPressedMission);
@@ -128,24 +131,17 @@ class HomeController extends GetxController {
     );
   }
 
-  /// 0. 집게 위치
-  late final _mark0 = Marker(
-    markerId: const MarkerId('0'),
-    position: const LatLng(37.55628805421761, 126.92925454322459),
-    onTap: onPressedMission,
-  );
-
-  /// 1. 봉투 위치
-  late final _mark1 = Marker(
+  /// 1. 봉투 위치 A
+  late final _markA = Marker(
     markerId: const MarkerId('1'),
-    position: const LatLng(37.556045082385985, 126.92975273958169),
+    position: const LatLng(37.558637, 126.925487),
     onTap: onPressedMission,
   );
 
-  /// 2. 최종 부스 위치
-  late final _mark2 = Marker(
+  /// 2. 최종 부스 위치 B
+  late final _markB = Marker(
     markerId: const MarkerId('2'),
-    position: const LatLng(37.55558828846465, 126.93053406587038),
+    position: const LatLng(37.560502, 126.923994),
     onTap: onPressedMission,
   );
 
@@ -177,9 +173,25 @@ class HomeController extends GetxController {
     switch (progress.value) {
       case 0:
         // 집게 & 봉투 마커
+        for (var item in _items) {
+          final data = item.data() as Map<String, dynamic>?;
+          if (data != null && !data['taken']) {
+            final coordinate = data['coordinate'] as GeoPoint;
+
+            markers.add(
+              Marker(
+                markerId: MarkerId(item.id),
+                position: LatLng(coordinate.latitude, coordinate.longitude),
+                onTap: onPressedMission,
+              ),
+            );
+          }
+        }
         break;
       case 1:
         // 부스 마커
+        markers.add(_markA);
+        markers.add(_markB);
         break;
     }
   }
@@ -233,6 +245,25 @@ class HomeController extends GetxController {
           zoom: 18,
         ),
       ));
+    }
+  }
+
+  /// 현재 사용가능한 집게 & 봉투 목록 listener
+  final List<QueryDocumentSnapshot<Object?>> _items = [];
+  _startListener() {
+    if (progress.value == 0) {
+      Stream<QuerySnapshot> itemsStream = db.collection('items').snapshots();
+      itemsStream.listen((QuerySnapshot snapshot) {
+        _items.clear();
+        _items.addAll(snapshot.docs);
+
+        // 마커로 추가
+        if (progress.value == 0) {
+          _updateMarkers();
+        }
+      }, onError: (error) {
+        log('Error: $error');
+      });
     }
   }
 }
